@@ -1,0 +1,35 @@
+[project]
+name = "sips"
+description = "Finding the best wines at Tesco in Python"
+authors = [{name = "Henry Wilde", email = "henrydavidwilde@gmail.com"}]
+readme = "README.md"
+license = { file = "LICENCE" }
+requires-python = ">=3.8"
+keywords = ["wine", "vivino", "tesco", "supermarket", "webscraping"]
+dynamic = ["version"]
+dependencies = ["bs4", "pandas", "requests"]
+
+[build-system]
+requires = ["setuptools >= 69"]
+build-backend = "setuptools.build_meta"
+
+[project.optional-dependencies]
+test = ["hypothesis", "pytest", "pytest-cov", "pytest-randomly"]
+dev = ["ruff", "sips[test]"]
+
+[tool.setuptools.dynamic]
+version = {attr = "sips.__version__"}
+
+[tool.ruff]
+line-length = 79
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+extend-select = ["D", "I", "W"]
+ignore = ["D105", "D107", "D202"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["sips"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
